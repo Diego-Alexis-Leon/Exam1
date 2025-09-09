@@ -1,0 +1,94 @@
+.titulo{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  border-bottom: solid 2px #544454;
+  color: #655511;
+  height: 10vh;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+.galeria{
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 2vh;
+}
+.imagen{
+  width: 400px;
+  height: 300px;
+  transition: 1s;
+}
+.imagen:hover{
+  transform: scale(1.1);
+}
+.leyenda{
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  background-color: #544454;
+  color: azure;
+}
+
+
+
+
+
+
+.principal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:  100vh;
+}
+.card{
+  box-shadow: 2px 2px 5px gray;
+  padding: 2px;
+  border-radius: 4px;
+}
+.star{
+  font-size: 20px;
+}
+
+.inactive{
+  cursor: pointer;
+  color: gray;
+  transition: color 0.3s ease;
+}
+.active{
+  cursor: pointer;
+  color: gold;
+  transition: color 0.3s ease;
+}
+.inactive:hover{
+  color: yellow;
+}
+.active:hover{
+  color: yellow;
+}
+.star span:hover {
+  color: orange;
+  transform: scale(1.2); 
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+.promedio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 2px;
+  padding: 5px;
+  background-color: #8a708a;
+}
+
+@media only screen and (max-width:600px) {
+  .imagen{
+    width: 200px;
+    height: 150px;
+    transition: 1s;
+
+  }
+}
