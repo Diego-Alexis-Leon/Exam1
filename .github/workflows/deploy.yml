@@ -10,28 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout del código
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Configurar Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      # 3. Instalar dependencias
-      - name: Install dependencies
-        run: npm install
-
-      # 4. Construir el proyecto (para React, Vite, etc.)
-      - name: Build project
-        run: npm run build
-
-      # 5. Deploy a Firebase Hosting
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v2.2.0
-        with:
-          args: deploy --only hosting
+      - name: Show secret exists
+        run: echo "Token length: ${#FIREBASE_TOKEN}"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
