@@ -3,7 +3,10 @@ import cactus2 from '../assets/cactus2.jpg'
 import cactus3 from '../assets/cactus3.jpg'
 import cactus4 from '../assets/cactus4.jpg'
 import Rate from './rate'
+import Modal from './modal'
 import { useState } from 'react'
+import Envia from './envia'
+import Enviar from './promed'
 function Galeria() {
 
   const [imagenes, setImages] = useState([
@@ -21,7 +24,23 @@ function Galeria() {
     setImages(imagenesOrdenadas);
   }
 
+  
+  const[modal,setModal]=useState(false)
+  const[promedio,setPromedio]= useState(0)
 
+  const sacaPromedio = (imagenes) =>{
+    const prom = 
+      imagenes.reduce((acum,img)=>(acum + img.rate),0 )/imagenes.length;
+    console.log(`El promedio es: ${prom}`);
+    setModal(true)
+    setPromedio(prom)
+  };
+  const reinicia = ()=>{
+    const newImagenes = imagenes.map((img) => ({ ...img, rate: 0 }));
+    console.log('reinicia funciona: '+newImagenes)
+    setImages(newImagenes);
+  };
+ 
   return (
     <>
       <div>
@@ -33,7 +52,22 @@ function Galeria() {
             </div>
           ))}
         </div>
-          <button className='promedio '>Calcular promedio: </button>
+          
+          {/* EL MAESTRO USA ESTE METODO PARA CALCULAR EL PROMEDIO Y AÑADIR EL BOTON A LA PAGINA
+          <button className='promedio ' onClick={promedio()}>Calcular promedio </button>
+          <Enviar  onClick={sacaPromedio}>
+          calcular promedio
+          </Enviar>
+          */}
+          <Enviar  onClick={()=>sacaPromedio(imagenes)}>
+          calcular promedio
+          </Enviar>
+          <Modal isOpen={modal} onClose={()=>setModal(false)} >
+            <h2>CALIFICACION DE LA GALERIA</h2>
+            <p>El promedio de la calificacion es: {promedio}</p>
+            <Envia onClick={reinicia}>Reiniciar</Envia>
+          </Modal>
+          
       </div>
 
     </>
