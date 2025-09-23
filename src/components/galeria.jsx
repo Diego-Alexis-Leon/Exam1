@@ -4,16 +4,16 @@ import cactus3 from '../assets/cactus3.jpg'
 import cactus4 from '../assets/cactus4.jpg'
 import Rate from './rate'
 import Modal from './modal'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Envia from './envia'
 import Enviar from './promed'
 function Galeria() {
 
   const [imagenes, setImages] = useState([
-    { id: 1, src: cactus1, rate: 0 },
-    { id: 2, src: cactus2, rate: 0 },
-    { id: 3, src: cactus3, rate: 0 },
-    { id: 4, src: cactus4, rate: 0 },
+    { id: 1, src: cactus1, rate: 0, ref: useRef() },
+    { id: 2, src: cactus2, rate: 0, ref: useRef() },
+    { id: 3, src: cactus3, rate: 0, ref: useRef() },
+    { id: 4, src: cactus4, rate: 0, ref: useRef() },
   ]);
 
   const ordenaImagen = (index, rate) => {
@@ -39,6 +39,8 @@ function Galeria() {
     const newImagenes = imagenes.map((img) => ({ ...img, rate: 0 }));
     console.log('reinicia funciona: '+newImagenes)
     setImages(newImagenes);
+    //MODIFICA EL VALOR DEL COMP: RATE
+    imagenes.map((img)=> img.ref.current.reset())
   };
  
   return (
@@ -48,7 +50,7 @@ function Galeria() {
           {imagenes.map((img, i) => (
             <div className='scoreCard' key={img.id}> {/*UN COMENTARIO */}
               <img src={img.src} alt="imagen" className='imagen' />
-              <Rate avisaCambio={ordenaImagen} index={i} value={img.rate} />
+              <Rate ref={img.ref} avisaCambio={ordenaImagen} index={i} value={img.rate} />
             </div>
           ))}
         </div>
