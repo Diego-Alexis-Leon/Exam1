@@ -40,6 +40,7 @@ function Galeria() {
     console.log('reinicia funciona: '+newImagenes)
     setImages(newImagenes);
     //MODIFICA EL VALOR DEL COMP: RATE
+    setModal(false)
     imagenes.map((img)=> img.ref.current.reset())
   };
  
